@@ -1,5 +1,6 @@
 import os
-path = os.getcwd();
+
+path = os.getcwd()
 with open(os.path.join(path, "inputs\\day1.txt")) as f:
     lines = f.readlines()
 
@@ -23,12 +24,13 @@ sum = 0
 for line in lines:
     first_digit = ""
     last_digit = ""
-    for i,c in enumerate(line):
+    for i, c in enumerate(line):
         if c.isnumeric():
             first_digit = c
             break
-        if i >= len(line)-2: continue
-        next_three = line[i:i+3]
+        if i >= len(line) - 2:
+            continue
+        next_three = line[i : i + 3]
         if next_three == "one":
             first_digit = "1"
             break
@@ -38,8 +40,9 @@ for line in lines:
         if next_three == "six":
             first_digit = "6"
             break
-        if i >= len(line)-3: continue
-        next_four = line[i:i+4]
+        if i >= len(line) - 3:
+            continue
+        next_four = line[i : i + 4]
         if next_four == "four":
             first_digit = "4"
             break
@@ -49,8 +52,9 @@ for line in lines:
         if next_four == "nine":
             first_digit = "9"
             break
-        if i >= len(line)-4: continue
-        next_five = line[i:i+5]
+        if i >= len(line) - 4:
+            continue
+        next_five = line[i : i + 5]
         if next_five == "three":
             first_digit = "3"
             break
@@ -60,14 +64,15 @@ for line in lines:
         if next_five == "eight":
             first_digit = "8"
             break
-        
-    reverse = ''.join(reversed(line))
-    for i,c in enumerate(reverse):
+
+    reverse = "".join(reversed(line))
+    for i, c in enumerate(reverse):
         if c.isnumeric():
             last_digit = c
             break
-        if i >= len(reverse)-2: continue
-        next_three = reverse[i:i+3]
+        if i >= len(reverse) - 2:
+            continue
+        next_three = reverse[i : i + 3]
         if next_three == "eno":
             last_digit = "1"
             break
@@ -77,8 +82,9 @@ for line in lines:
         if next_three == "xis":
             last_digit = "6"
             break
-        if i >= len(reverse)-3: continue
-        next_four = reverse[i:i+4]
+        if i >= len(reverse) - 3:
+            continue
+        next_four = reverse[i : i + 4]
         if next_four == "ruof":
             last_digit = "4"
             break
@@ -88,8 +94,9 @@ for line in lines:
         if next_four == "enin":
             last_digit = "9"
             break
-        if i >= len(reverse)-4: continue
-        next_five = reverse[i:i+5]
+        if i >= len(reverse) - 4:
+            continue
+        next_five = reverse[i : i + 5]
         if next_five == "eerht":
             last_digit = "3"
             break
