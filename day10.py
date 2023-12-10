@@ -23,8 +23,8 @@ EASTS = set(("-", "L", "F"))
 WESTS = set(("-", "7", "J"))
 
 
-STARTING_PIPE = "|"
-S_REPLACEMENT = "F"
+STARTING_PIPE = "L"
+S_REPLACEMENT = "7"
 
 
 def add_tuple(t1, t2):
@@ -46,6 +46,17 @@ def check_next_to(r, c, set):
         return True
     return False
 
+def print_grid(grid):
+    for row in grid:
+        print(''.join(row))
+
+def print_outs(grid, out_coords):
+    out_grid = grid.copy()
+    for r,row in enumerate(grid):
+        for c,_ in enumerate(row):
+            if (r,c) in out_coords:
+                out_grid[r][c] = "O"
+    print_grid(out_grid)
 
 start_pos = (0, 0)
 for r, line in enumerate(lines):
@@ -53,9 +64,7 @@ for r, line in enumerate(lines):
         start_pos = (r, line.find("S"))
         break
 
-# next_move = PIPES["F"][(0, -1)]
 next_move = PIPES[STARTING_PIPE][(1, 0)]
-# last_pipe_coord = add_tuple(start_pos, (0, -1))
 last_pipe_coord = add_tuple(start_pos, (1, 0))
 steps = 2
 loop_coords = set((start_pos, last_pipe_coord))
@@ -81,7 +90,6 @@ for line in lines:
     expanded.append(["0"] * len(line) * 2)
 
 for r, line in enumerate(expanded):
-    print(len(line))
     for c, char in enumerate(line):
         if char != "0":
             continue
@@ -112,18 +120,14 @@ for r, line in enumerate(expanded):
             start_pos = (r, c)
             break
 
-# next_move = PIPES["F"][(0, -1)]
 next_move = PIPES["|"][(1, 0)]
-# last_pipe_coord = add_tuple(start_pos, (0, -1))
 last_pipe_coord = add_tuple(start_pos, (1, 0))
 loop_coords_2 = set((start_pos, last_pipe_coord))
 steps2 = 2
-print(expanded[8])
 while True:
     next_pipe_coord = add_tuple(last_pipe_coord, next_move)
     loop_coords_2.add(next_pipe_coord)
     next_pipe = expanded[next_pipe_coord[0]][next_pipe_coord[1]]
-    # print(next_pipe, next_pipe_coord)
     if next_pipe == "S":
         break
     delta_coords = sub_tuple(next_pipe_coord, last_pipe_coord)
@@ -139,25 +143,27 @@ for i in range(100):
         for c, char in enumerate(line):
             if (r, c) in loop_coords_2:
                 continue
-            if r == 0 or r == len(expanded) - 1 or c == 0 or c == len(expanded) - 1:
+            if r == 0 or r == len(expanded) - 1 or c == 0 or c == len(line) - 1:
                 out_coords.add((r, c))
                 continue
             if check_next_to(r, c, out_coords):
                 out_coords.add((r, c))
+
 total_coords = len(expanded) * len(expanded[0])
+fake_coords = 0
+for line in expanded:
+    for c in line:
+        if c == "0": fake_coords += 1
+
 in_coords = set()
 for r, line in enumerate(expanded):
     for c, char in enumerate(line):
         if (
             (r, c) not in out_coords
             and (r, c) not in loop_coords_2
-            and r % 2 == 0
-            and c % 2 == 0
+            and char != "0"
         ):
             in_coords.add((int(r / 2), int(c / 2)))
+
 print(f"Part 1 ans: {steps/2}")
-print(total_coords, len(out_coords), len(loop_coords_2))
-print(total_coords - len(out_coords) - len(loop_coords_2))
-# 834 is the non leaking num. Too high.
-# 800 too high...
-print(in_coords)
+print(f"Part 2 ans: {len(in_coords)}")
