@@ -1,7 +1,7 @@
 import os
 
 path = os.getcwd()
-with open(os.path.join(path, "inputs", "day2.txt")) as f:
+with open(os.path.join(path, "inputs", "day02.txt")) as f:
     lines = f.readlines()
 
 

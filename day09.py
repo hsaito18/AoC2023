@@ -2,7 +2,7 @@ import os
 
 # Load input file:
 path = os.getcwd()
-with open(os.path.join(path, "inputs", "day9.txt")) as f:
+with open(os.path.join(path, "inputs", "day09.txt")) as f:
     lines = f.readlines()
 for i, line in enumerate(lines):
     lines[i] = line.strip()
