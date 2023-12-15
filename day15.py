@@ -45,5 +45,5 @@ for i,box in enumerate(boxes):
     for j,focal in enumerate(box['focal']):
         total_focusing_power += (1+i) * (1+j) * int(focal)
 
-print(p1)
-print(total_focusing_power)
+print(f'Part 1 ans: {p1}')
+print(f'Part 2 ans: {total_focusing_power}')
