@@ -24,7 +24,7 @@ def get_final_energized(init_pos, init_dir):
     energized_tiles = set()
     energized_tiles.add(init_pos)
     searched_tiles = set()
-    for j in range(1000):
+    while (len(lights) > 0):
       new_lights = lights.copy()
       for i,light in enumerate(lights):
         r,c,d = light
