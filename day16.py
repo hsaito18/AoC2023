@@ -15,8 +15,6 @@ def move_light(t, t2, searched_tiles):
     if nc < 0 or nc >= len(lines[0]): return -1
     return (t[0]+t2[0], t[1]+t2[1])
 
-
-
 FORWARD_MIRROR_MAP = {(1,0): (0,-1), (-1,0): (0,1), (0,1): (-1,0), (0,-1): (1,0)}
 BACKWARD_MIRROR_MAP = {(1,0): (0,1), (-1,0): (0,-1), (0,1): (1,0), (0,-1): (-1,0)}
 MIRROR_MAP = {"/": FORWARD_MIRROR_MAP, "\\": BACKWARD_MIRROR_MAP}
