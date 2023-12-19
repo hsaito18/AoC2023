@@ -46,17 +46,20 @@ def check_next_to(r, c, set):
         return True
     return False
 
+
 def print_grid(grid):
     for row in grid:
-        print(''.join(row))
+        print("".join(row))
+
 
 def print_outs(grid, out_coords):
     out_grid = grid.copy()
-    for r,row in enumerate(grid):
-        for c,_ in enumerate(row):
-            if (r,c) in out_coords:
+    for r, row in enumerate(grid):
+        for c, _ in enumerate(row):
+            if (r, c) in out_coords:
                 out_grid[r][c] = "O"
     print_grid(out_grid)
+
 
 start_pos = (0, 0)
 for r, line in enumerate(lines):
@@ -153,16 +156,13 @@ total_coords = len(expanded) * len(expanded[0])
 fake_coords = 0
 for line in expanded:
     for c in line:
-        if c == "0": fake_coords += 1
+        if c == "0":
+            fake_coords += 1
 
 in_coords = set()
 for r, line in enumerate(expanded):
     for c, char in enumerate(line):
-        if (
-            (r, c) not in out_coords
-            and (r, c) not in loop_coords_2
-            and char != "0"
-        ):
+        if (r, c) not in out_coords and (r, c) not in loop_coords_2 and char != "0":
             in_coords.add((int(r / 2), int(c / 2)))
 
 print(f"Part 1 ans: {steps/2}")
