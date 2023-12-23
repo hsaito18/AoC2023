@@ -91,34 +91,35 @@ def get_all_coords(lines):
 from collections import deque
 from copy import deepcopy
 
-# start_point = (0, 1)
-# visited = set()
-# path = []
-# visited.add(start_point)
-# que = deque()
-# que.append((start_point, visited, path))
-# max_len = 0
-# while que:
-#     curr, visit, p = que.popleft()
-#     if curr == GOAL:
-#         print(len(visit))
-#         if len(visit) > max_len:
-#             max_len = len(visit)
-#             # print(p)
-#             # print(max_len)
-#             # test = (0, 1)
-#             # print(test in visit)
-#         continue
+start_point = (0, 1)
+visited = set()
+path = []
+visited.add(start_point)
+que = deque()
+que.append((start_point, visited, path))
+max_len = 0
+while que:
+    curr, visit, p = que.popleft()
+    if curr == GOAL:
+        print(len(visit))
+        if len(visit) > max_len:
+            max_len = len(visit)
+            # print(p)
+            # print(max_len)
+            # test = (0, 1)
+            # print(test in visit)
+        continue
 
-#     possibilities = get_possibilities_2(curr[0], curr[1])
-#     filtered_possibilities = list(filter(lambda x: x not in visit, possibilities))
-#     for possibility in filtered_possibilities:
-#         vis = deepcopy(visit)
-#         pa = deepcopy(p)
-#         vis.add(possibility)
-#         # pa.append(possibility)
-#         que.append((possibility, vis, pa))
-# 2018
+    possibilities = get_possibilities_2(curr[0], curr[1])
+    filtered_possibilities = list(filter(lambda x: x not in visit, possibilities))
+    for possibility in filtered_possibilities:
+        vis = deepcopy(visit)
+        pa = deepcopy(p)
+        vis.add(possibility)
+        # pa.append(possibility)
+        que.append((possibility, vis, pa))
+
+print(f"Part 1 ans: {max_len - 1}")  # 2018
 nodes = [{"rc": (0, 1), "children": {}, "possibilities": [(1, 1)]}]
 node_set = set()
 node_set.add((0, 1))
@@ -166,7 +167,7 @@ while que:
     # print(curr_idx, GOAL_IDX)
     node = nodes[curr_idx]
     if curr_idx == GOAL_IDX:
-        print(dist, max_len)
+        # print(dist, max_len)
         if dist > max_len:
             max_len = dist
             # print(p)
@@ -184,4 +185,4 @@ while que:
         # pa.append(possibility)
         que.append((poss_idx, vis, dist + poss_dist))
 
-print(max_len)  # 4000 too low...
+print(max_len)  # 6406
